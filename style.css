@@ -1,0 +1,24 @@
+
+.ng-invalid.ng-dirty {
+  border-color: #FA787E;
+ }
+
+.ng-valid.ng-dirty {
+  border-color: #78FA89;
+ }
+
+td {
+ padding: 10px;
+}
+
+td.available {
+  background-color: #eee;
+}
+
+td.good {
+  background-color: #cfc;
+}
+
+td.bad {
+  background-color: #fcc;
+}
