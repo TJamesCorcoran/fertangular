@@ -8,7 +8,7 @@ To run:
 
 ## Example of use
 
-![alt tag](http:./fertangular_screenshot.png)
+![screenshot](./fertangular_screenshot.png)
 
 ## History
 
