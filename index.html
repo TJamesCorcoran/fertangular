@@ -8,107 +8,6 @@
     <body>
 	  <h1> 'Fertangular' Fertilizer Calculator </h1>
 
-<!--
-      <form name="fertForm" ng-controller="FertilizerController as fertCtrl" >
-		<table>
-		  <tr>
-			<td >field size:</td>
-			<td>
-			  <input ng-model="fertCtrl.field_size"  type="number" min="0" /> 	
-			</td>
-			<td>
-			  <input ng-model="fertCtrl.field_units" type="radio" value="acres" /> acres
-			  <input ng-model="fertCtrl.field_units" type="radio" value="ftsquare" /> ft<sup>2</sup>
-			</td>
-			<td> = {{ fertCtrl.field_ftsquare() | number:0 }} ft <sup>2</sup>
-			  </td>
-		  </tr>
-
-		  <tr>
-			<td colspan=2		>your soil</td>
-			<td					>your soil</td>
-			<td     class="available"					>soil <i>available</i></td>
-			<td		>fertilizer addition </td>
-			<td		class="available">fertilizer <i>available</i> </td>
-			<td		class="available">total <i>available</i> </td>
-
-		  </tr>
-		  <tr>
-			<td colspan=2>
-			  <input ng-model="fertCtrl.soil_units" type="radio" value="lbsa" /> lbs / acre
-			  <input ng-model="fertCtrl.soil_units" type="radio" value="ppm" /> ppm
-			</td>
-			<td> (lbs/acre)</td>
-			<td class="available"> (lbs/acre)</td>
-			<td>
-			  <input ng-model="fertCtrl.fertilizer_lbs" type="number" min="0" /> lbs <br>
-			  of 
-           	  <select ng-model="fertCtrl.fertilizer_type" ng-options="choice.name for choice in fertCtrl.known_fert_types"> 
-			  </select>
-				x {{fertCtrl.fertilizer_typexo}} y
-
-			</td>
-			<td class="available"></td>
-			<td class="available"></td>
-			<td>
-           	  <select ng-model="fertCtrl.crop_type" ng-options="choice.name for choice in fertCtrl.known_crop_types"> 
-			  <input type="submit" value="Submit" />
-			</td>
-		  </tr>
-
-		  <tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td class="available"></td>
-			<td>
-			  {{ fertCtrl.fertilizer_lbsa() | number:0 }} lbs / acre
-			</td>
-			<td class="available">1</td>
-			<td class="available">2</td>
-
-			<td ng-repeat="crop in crops">{{crop.name}}</td>
-		  </tr>
-		  <tr>
-			<th>N:</th>
-			<td><input ng-model="fertCtrl.n" type="number" min="0" required /></td>
-			<td> {{fertCtrl.n_lbsa() }}  </td>
-			<td class="available"> {{fertCtrl.n_soil_available_lbsa()| number:0 }}  </td>
-			<td> {{fertCtrl.n_fertilizer_lbsa() | number:0 }} </td>
-			<td class="available"> {{fertCtrl.n_fertilizer_available_lbsa() | number:0 }} </td>
-			<td class="available"> {{fertCtrl.n_total_available_lbsa() | number:0 }} </td>
-			<td ng-repeat="crop in crops"> {{fertCtrl.crop_type.n | number:0 }} </td>
-		  </tr>
-		  <tr>
-			<th>P:</th>
-			<td><input ng-model="fertCtrl.p" type="number" min="0" required /></td>
-			<td> {{fertCtrl.p_lbsa() }} </td>
-			<td class="available"> {{fertCtrl.p_soil_available_lbsa() | number:0 }}  </td>
-			<td> {{fertCtrl.p_fertilizer_lbsa()| number:0 }}  </td>
-			<td class="available"> {{fertCtrl.p_fertilizer_available_lbsa() | number:0 }} </td>
-			<td class="available"> {{fertCtrl.p_total_available_lbsa() | number:0 }} </td>
-			<td ng-repeat="crop in crops"> {{fertCtrl.crop_type.p | number:0 }} </td>
-		  </tr>
-		  <tr>
-			<th>K:</th>
-			<td><input ng-model="fertCtrl.k" type="number" min="0" required /></td>
-			<td> {{fertCtrl.k_lbsa() }} </td>
-			<td class="available"> {{fertCtrl.k_soil_available_lbsa() | number:0}}  </td>
-			<td> {{fertCtrl.k_fertilizer_lbsa()| number:0 }}  </td>
-			<td class="available"> {{fertCtrl.k_fertilizer_available_lbsa() | number:0 }} </td>
-			<td class="available"> {{fertCtrl.k_total_available_lbsa() | number:0 }} </td>
-			<td ng-repeat="crop in crops"> {{fertCtrl.crop_type.k | number:0 }} </td>
-		  </tr>
-		</table>
-      </form>
-
--->
-
-<!--  -------------------------------------------------- -->	   
-<!--  -------------------------------------------------- -->	   
-<!--  -------------------------------------------------- -->	   
-
-
       <form name="fieldForm" ng-controller="FertilizerController as fertCtrl" >
 		<table>
 		  <tr>
@@ -143,11 +42,15 @@
 			 <td></td>
 			 <td>N (lbs/ acre) </td>
 			 <td>P (lbs/ acre)</td>
-			 <td>K  (lbs/ acre)</td>
+			 <td>K (lbs/ acre)</td>
+
+			 <td>N (lbs/ acre) </td>
+			 <td>P<sub>2</sub>O<sub>5</sub>(lbs/ acre)</td>
+			 <td>K<sub>2</sub>O (lbs/ acre)</td>
 
 			 <td>N <i>available</i> </td>
-			 <td>P <i>available</i> </td>
-			 <td>K <i>available</i> </td>
+			 <td>P<sub>2</sub>O<sub>5</sub> <i>available</i> </td>
+			 <td>K<sub>2</sub>O <i>available</i> </td>
 		   </tr>
 
 		   <tr>
@@ -160,9 +63,15 @@
 			 <td><input ng-model="fertCtrl.p" type="number" min="0" required /></td>
 			 <td><input ng-model="fertCtrl.k" type="number" min="0" required /></td>
 
+			 <td> {{fertCtrl.n_lbsa ()| number:0}}</td>
+			 <td> {{fertCtrl.p2o5_lbsa() | number:0}}</td>
+			 <td> {{fertCtrl.k2o_lbsa() | number:0}}</td>
+
+
+
 			 <td class="available"> {{fertCtrl.n_soil_available_lbsa()| number:0 }}  </td>
-			 <td class="available"> {{fertCtrl.p_soil_available_lbsa()| number:0 }}  </td>
-			 <td class="available"> {{fertCtrl.k_soil_available_lbsa()| number:0 }}  </td>
+			 <td class="available"> {{fertCtrl.p2o5_soil_available_lbsa()| number:0 }}  </td>
+			 <td class="available"> {{fertCtrl.k2o_soil_available_lbsa()| number:0 }}  </td>
 		   </tr>
 
 		   <tr>
@@ -173,13 +82,17 @@
            	  <select ng-model="fertCtrl.fertilizer_type" ng-options="choice.name for choice in fertCtrl.known_fert_types">  </select>
 			 </td>
 
+			 <td></td>
+			 <td></td>
+			 <td></td>
+
 			 <td> {{fertCtrl.n_fertilizer_lbsa()| number:0 }}  </td>
 			 <td> {{fertCtrl.p_fertilizer_lbsa()| number:0 }}  </td>
 			 <td> {{fertCtrl.k_fertilizer_lbsa()| number:0 }}  </td>
 
 			 <td class="available"> {{fertCtrl.n_fertilizer_available_lbsa()| number:0 }}  </td>
-			 <td class="available"> {{fertCtrl.p_fertilizer_available_lbsa()| number:0 }}  </td>
-			 <td class="available"> {{fertCtrl.k_fertilizer_available_lbsa()| number:0 }}  </td>
+			 <td class="available"> {{fertCtrl.p2o5_fertilizer_available_lbsa()| number:0 }}  </td>
+			 <td class="available"> {{fertCtrl.k2o_fertilizer_available_lbsa()| number:0 }}  </td>
 		   </tr>
 
 		   <tr ng-repeat="my_fertilizer in fertCtrl.my_fertilizers">
@@ -192,13 +105,19 @@
 			 <td>
 			   <h2>Total</h2>
 			 </td>
+			 </tr>
+		   <tr>
+			 <td></td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
 			 <td></td>
 			 <td></td>
 			 <td></td>
 			 <td></td>
 			 <td>{{fertCtrl.n_total_available_lbsa() | number:0}}</td>
-			 <td>{{fertCtrl.p_total_available_lbsa() | number:0}}</td>
-			 <td>{{fertCtrl.k_total_available_lbsa() | number:0}}</td>
+			 <td>{{fertCtrl.p2o5_total_available_lbsa() | number:0}}</td>
+			 <td>{{fertCtrl.k2o_total_available_lbsa() | number:0}}</td>
 
 		   </tr>
 
@@ -215,9 +134,12 @@
 			 <td></td>
 			 <td></td>
 			 <td></td>
+			 <td></td>
+			 <td></td>
+			 <td></td>
 			 <td ng-class="{good: fertCtrl.n_total_available_lbsa()  > my_crop.n, bad: fertCtrl.n_total_available_lbsa()  < my_crop.n}">{{my_crop.n}}</td>
-			 <td ng-class="{good: fertCtrl.p_total_available_lbsa()  > my_crop.p, bad: fertCtrl.p_total_available_lbsa()  < my_crop.p}">{{my_crop.p}}</td>
-			 <td ng-class="{good: fertCtrl.k_total_available_lbsa()  > my_crop.k, bad: fertCtrl.k_total_available_lbsa()  < my_crop.k}">{{my_crop.k}}</td>
+			 <td ng-class="{good: fertCtrl.p2o5_total_available_lbsa()  > my_crop.p2o5, bad: fertCtrl.p2o5_total_available_lbsa()  < my_crop.p2o5}">{{my_crop.p2o5}}</td>
+			 <td ng-class="{good: fertCtrl.k2o_total_available_lbsa()  > my_crop.k2o, bad: fertCtrl.k2o_total_available_lbsa()  < my_crop.k2o}">{{my_crop.k2o}}</td>
 		   </tr>
 
 		   <tr>
