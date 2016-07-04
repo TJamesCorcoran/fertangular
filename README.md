@@ -2,7 +2,7 @@
 
 A simple browser based fertilizer calculator, created as a demo project in Angular.js
 
-To run:
+View [fertangular on GitHub pages](http://tjamescorcoran.github.io/fertangular/) or run locally:
 
   cd <here> ; python -m SimpleHTTPServer 8000
 
